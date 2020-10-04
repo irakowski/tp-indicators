@@ -7,7 +7,7 @@
       <div class="form-group mt-3 text-center">
         <label for="type">Select institution type</label>
       </div>
-      <div class="container mt-3 mb-3 text-center">
+      <div id="type-pick"class="container mt-3 mb-3 text-center">
         <div class="form-check-inline">
             <input class="btn btn-outline-primary btn-lg" type="button" name="institution-type" id="exampleRadios1" value="Inny podmiot">
         </div>
@@ -22,16 +22,150 @@
         <div class="container mt-3 mb-3 text-center" id="rzis" hidden>
             <p>Select RZIS type</p>
             <div class="form-check-inline">
-                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="exampleRadios1" value="Wariant porównawczy">
+                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="comparison-pick" value="Wariant porównawczy">
             </div>
             <div class="form-check-inline">
-                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="exampleRadios2" value="Wariant kalkulacyjny">
+                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="calculation-pick" value="Wariant kalkulacyjny">
             </div>
         </div>
-      <!--<div class="checkbox">
-        <label><input type="checkbox" name="remember"> Remember me</label>
+        <div id="comparison-form" hidden="">
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) z działalności operacyjnej</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Przychody netto ze sprzedaży i zrównane z nimi</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zmiana stanu produktów</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Koszt wytworzenia świadczeń na potrzeby własne</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Pozostałe przychody operacyjne</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) brutto</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Przychody finansowes</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+        </div>
+
+
+        <div id="calculation-form" hidden="">
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) z działalności operacyjnej</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Przychody netto ze sprzedaży i zrównane z nimi</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Pozostałe przychody operacyjne</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) brutto</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Przychody finansowes</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="form-row">
+            <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
+            <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+        </div>
+
+      <div id="bank-form" hidden="">
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Wynik z tytułu odsetek</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Średnia wartość aktywów oprocentowanych w roku obrotowym</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Koszty działania</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Przychody</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button> -->
+
+      <div id="zaklad-form" hidden="">
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Wynik techniczny</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Składki</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Składki przypisane brutto</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-row">
+          <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
+          <input type="number" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+      </div>
+      <!--<button type="submit" class="btn btn-default">Submit</button> -->
     </form>
     <script src="{% static 'records/app.js'%}"></script>
   </div>
