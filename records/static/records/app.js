@@ -5,15 +5,21 @@ $(function(){
         $(this).attr("selected", "");
         if($(this).attr("value")=="Inny podmiot"){
             $("#rzis").removeAttr('hidden');
+            $('#calculation-form').attr('hidden', "'");
+            $('#comparison-form').attr('hidden', "");
         } else {
             $("#rzis").attr("hidden","")}
         if($(this).attr("value")=="Bank") {
             $("#bank-form").removeAttr('hidden');
+            $('#calculation-form').attr('hidden', "'");
+            $('#comparison-form').attr('hidden', "");
         } else {
             $("#bank-form").attr("hidden", "");
         };
         if($(this).attr("value")=="Zakład ubezpieczeń / reasekuracji") {
             $("#zaklad-form").removeAttr('hidden');
+            $('#calculation-form').attr('hidden', "'");
+            $('#comparison-form').attr('hidden', "");
         } else {
             $("#zaklad-form").attr("hidden", "");
         }
@@ -34,13 +40,14 @@ $(function(){
             $('#comparison-form').attr('hidden', "");
         }
     });
-    /*$('input[type="button"]'). {
-        if($(this).attr('selected')=='selected') {
+   /* $('input[type="button"]').change(function(){
+        if($(this).attr('selected')) {
             $(this).removeClass('btn-outline-primary').addClass('btn-primary');
         } else {
             $(this).removeClass('btn-primary').addClass('btn-outline-primary');
         }
-        
+    $('input[type="button"]').trigger( "click" );    
     });*/
+    
 });
 
