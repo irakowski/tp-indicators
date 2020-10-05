@@ -1,0 +1,22 @@
+{% extends 'records/base.html' %}
+{% load static %}
+{% block content%}
+<div class="container">
+    <div>
+        <h2>Dane wysciowe</h2>
+        <p>Wynik techniczny: {{wynik_techiniczny}}</p>
+        <p>Skladki {{skladki}}</p>
+        <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
+        <p>Skladki przypisane brutto:{{skladki_przypisane_brutto}} </p>
+        <p>Aktywa razem: {{aktywa_razem}}</p>
+        <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p> 
+    </div> 
+    <div>
+        <h2>Wyniki</h2>
+        <p>Rentownosc dzilalnosci technicznej {{rentownosc_dzialalnosci_technicznej}} %</p>
+        <p>Rentownosc sprzedazy: {{rentownosc_sprzedazy}} %</p>
+        <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
+        <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+    </div>
+</div>
+{% endblock%}

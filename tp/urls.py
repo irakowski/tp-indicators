@@ -19,5 +19,9 @@ from records import views
 
 urlpatterns = [
     path('', views.TpForm.as_view(), name='form'),
+    path('bank-form/', views.BankFormView.as_view(), name='bank-form'),
+    path('zaklad-form/', views.ZakladFormView.as_view(), name='zaklad-form'),
+    path('comparison-form/', views.ComparisonFormView.as_view(), name='comparison-form'),
+    path('calculation-form/', views.CalculationFormView.as_view(), name='calculation-form'),
     path('admin/', admin.site.urls),
 ]
