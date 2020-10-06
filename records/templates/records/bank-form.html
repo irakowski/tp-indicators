@@ -11,24 +11,28 @@
         {% crispy form %}
     </form>
     {% else %}
-    <div>
-        <h2>Dane wyjsciowe</h2>
-        <p>Wynik z tytułu odsetek: {{wynik}}</p>
-        <p>Średnia wartość aktywów oprocentowanych w roku obrotowym: {{srednia}}</p>
-        <p>Koszty działania: {{koszty}}</p>
-        <p>Przychody:{{przychody}} </p>
-        <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
-        <p>Aktywa razem: {{aktywa_razem}}</p>
-        <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p> 
-    </div> 
-    <div>
-        <h2>Wyniki</h2>
-        <p>Marza odsetkowa netto: {{marza_odsetkowa_netto}} %</p>
-        <p>Koszty/dochody: {{koszty_dochody}} %</p>
-        <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
-        <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+    <div class="row shadow">
+        <div class="col-md-2"><h2>Dane wyjsciowe</h2></div>
+        <div class="col-md-8">
+            <p>Wynik z tytułu odsetek: {{wynik}}</p>
+            <p>Średnia wartość aktywów oprocentowanych w roku obrotowym: {{srednia}}</p>
+            <p>Koszty działania: {{koszty}}</p>
+            <p>Przychody:{{przychody}} </p>
+            <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
+            <p>Aktywa razem: {{aktywa_razem}}</p>
+            <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p> 
+        </div>
+    </div>
+    <hr>
+    <div class="row shadow">
+        <div class="col-md-2"><h2>Wyniki</h2></div>
+        <div class="col-md-8">
+            <p>Marza odsetkowa netto: {{marza_odsetkowa_netto}} %</p>
+            <p>Koszty/dochody: {{koszty_dochody}} %</p>
+            <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
+            <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+        </div>
     </div>
     {% endif %}
 </div>
-
 {% endblock%}

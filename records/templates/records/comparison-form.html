@@ -11,25 +11,32 @@
         {% crispy form %}
     </form>
     {% else %}
-    <div>
-        <h2>Dane wysciowe</h2>
-        <p>Zysk (strata) z działalności operacyjnej: {{zysk_strata_z_dzialalnosci_operacyjnej}}</p>
-        <p>Przychody netto ze sprzedaży i zrównane z nimi: {{przychody_netto}}</p>
-        <p>Zmiana stanu produktów: {{zmiana_stanu_produktow}}</p>
-        <p>Koszt wytworzenia świadczeń na potrzeby własne: {{koszty_swiadczen}} </p>
-        <p>Pozostałe przychody operacyjne: {{pozostale_przychody_operacyjne}}</p>
-        <p>Zysk (strata) brutto: {{zysk_strata_brutto}}</p>
-        <p>Przychody finansowe: {{przychody_finansowe}}</p> 
-        <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
-        <p>Aktywa razem: {{aktywa_razem}}</p>
-        <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p>
+    <div class="row shadow">
+        <div class="col-md-2"><h2>Dane wysciowe</h2></div>
+        <div class="col-md-6">
+            <p>Zysk (strata) z działalności operacyjnej: {{zysk_strata_z_dzialalnosci_operacyjnej}}</p>
+            <p>Przychody netto ze sprzedaży i zrównane z nimi: {{przychody_netto}}</p>
+            <p>Zmiana stanu produktów: {{zmiana_stanu_produktow}}</p>
+            <p>Koszt wytworzenia świadczeń na potrzeby własne: {{koszty_swiadczen}} </p>
+            <p>Pozostałe przychody operacyjne: {{pozostale_przychody_operacyjne}}</p>
+        </div>
+        <div class="col-md-4">
+            <p>Zysk (strata) brutto: {{zysk_strata_brutto}}</p>
+            <p>Przychody finansowe: {{przychody_finansowe}}</p> 
+            <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
+            <p>Aktywa razem: {{aktywa_razem}}</p>
+            <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p>
+        </div>        
     </div> 
-    <div>
-        <h2>Wyniki</h2>
-        <p>Marza operacyjna: {{marza_operacyjna}} %</p>
-        <p>Marza zysku brutto: {{marza_zysku_brutto}} %</p>
-        <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
-        <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+    <hr>
+    <div class="row shadow">
+        <div class="col-md-2"><h2>Wyniki</h2></div>
+        <div class="col-md-6">
+            <p>Marza operacyjna: {{marza_operacyjna}} %</p>
+            <p>Marza zysku brutto: {{marza_zysku_brutto}} %</p>
+            <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
+            <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+        </div>
     </div>
     {% endif %}
 </div>

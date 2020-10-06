@@ -3,10 +3,9 @@
 {% load crispy_forms_tags %}
 {% block content%}
 <div class="container mt-5">
-    <h2 class="text-center"> Financial Indicators Form</h2>
-    <!--<form action="">-->
+    <h2 class="text-center"> Kalkulator wskaznikow Finansowych</h2>
       <div class="form-group mt-3 text-center">
-        <label for="type">Select institution type</label>
+        <label for="type">Wybierz rodzaj podmiotu dla którego przygotowujesz deklarację TPR-C</label>
       </div>
       <div id="type-pick"class="container mt-3 mb-3 text-center">
         <div class="form-check-inline">
@@ -21,7 +20,7 @@
       </div>
 
       <div class="container mt-3 mb-3 text-center" id="rzis" hidden>
-            <p>Select RZIS type</p>
+            <p>Wybierz właściwy wariant RZiS analizowanego podmiotu</p>
             <div class="form-check-inline">
                 <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="comparison-pick" value="Wariant porównawczy">
             </div>
@@ -29,7 +28,7 @@
                 <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="calculation-pick" value="Wariant kalkulacyjny">
             </div>
       </div>
-      
+
       <div id="comparison-form" hidden="">
         <form method="POST" action="{% url 'comparison-form' %}">
           {% csrf_token %}
