@@ -1,10 +1,20 @@
 {% extends 'records/base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
 <div class="container">
+    <h4 class="text-center mt-5 mb-5">Formularz Zakladu ubezpieczen / reasekuracji</h4>
+    {% if form.errors %}
+    <form method="POST" action="{% url 'zaklad-form' %}">
+        {% csrf_token %}
+        <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+        {% crispy form %}
+        <br>
+    </form>
+    {% else %}
     <div>
-        <h2>Dane wysciowe</h2>
-        <p>Wynik techniczny: {{wynik_techiniczny}}</p>
+        <h2>Dane wyjsciowe</h2>
+        <p>Wynik techniczny: {{wynik_techniczny}}</p>
         <p>Skladki {{skladki}}</p>
         <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
         <p>Skladki przypisane brutto:{{skladki_przypisane_brutto}} </p>
@@ -18,5 +28,6 @@
         <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
         <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
     </div>
+    {% endif %}
 </div>
 {% endblock%}

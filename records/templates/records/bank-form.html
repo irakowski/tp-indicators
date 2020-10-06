@@ -7,12 +7,12 @@
     {% if form.errors %}
     <form method="POST" action="{% url 'bank-form' %}">
         {% csrf_token %}
+        <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
         {% crispy form %}
-        <p class="text-muted small">Wartosci nie moga byc mniejsze od zera</p>
     </form>
     {% else %}
     <div>
-        <h2>Dane wysciowe</h2>
+        <h2>Dane wyjsciowe</h2>
         <p>Wynik z tytułu odsetek: {{wynik}}</p>
         <p>Średnia wartość aktywów oprocentowanych w roku obrotowym: {{srednia}}</p>
         <p>Koszty działania: {{koszty}}</p>

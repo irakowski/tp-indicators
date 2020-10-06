@@ -18,9 +18,9 @@
         <div class="form-check-inline">
             <input class="btn btn-outline-primary btn-lg" type="button" name="institution-type" id="exampleRadios3" value="Bank">
         </div>
-        </div>
+      </div>
 
-        <div class="container mt-3 mb-3 text-center" id="rzis" hidden>
+      <div class="container mt-3 mb-3 text-center" id="rzis" hidden>
             <p>Select RZIS type</p>
             <div class="form-check-inline">
                 <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="comparison-pick" value="Wariant porównawczy">
@@ -28,177 +28,41 @@
             <div class="form-check-inline">
                 <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="calculation-pick" value="Wariant kalkulacyjny">
             </div>
-        </div>
-        <div id="comparison-form" hidden="">
-            <form method="POST" action="{% url 'comparison-form' %}">
-              {% csrf_token %}
-              <table>{{ comparison_form }}</table>
-              <button type="submit">Submit</button>
-            </form>
-          <!--<div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) z działalności operacyjnej</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Przychody netto ze sprzedaży i zrównane z nimi</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zmiana stanu produktów</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Koszt wytworzenia świadczeń na potrzeby własne</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Pozostałe przychody operacyjne</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) brutto</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Przychody finansowes</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div> -->
-        </div>
-
-
-        <div id="calculation-form" hidden="">
-          <form method="POST" action="{% url 'calculation-form' %}">
-            {% csrf_token %}
-            <table>{{ calculation_form }}</table>
-            <button type="submit">Submit</button>
+      </div>
+      
+      <div id="comparison-form" hidden="">
+        <form method="POST" action="{% url 'comparison-form' %}">
+          {% csrf_token %}
+          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          {% crispy comparison_form %}
+          <br>
         </form>
-          
-          <!--<div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) z działalności operacyjnej</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Przychody netto ze sprzedaży i zrównane z nimi</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Pozostałe przychody operacyjne</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) brutto</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Przychody finansowes</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div>
-          <div class="form-row">
-            <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
-            <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-          </div> -->
-        </div>
-
+      </div>
+      <div id="calculation-form" hidden="">
+        <form method="POST" action="{% url 'calculation-form' %}">
+          {% csrf_token %}
+          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          {% crispy calculation_form %}
+          <br>
+        </form>
+      </div>
       <div id="bank-form" hidden="">
         <form method="POST" action="{% url 'bank-form' %}">
           {% csrf_token %}
           <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
           {% crispy bank_form %}
+          <br>
         </form>
       </div>
-          
-       <!--<div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Wynik z tytułu odsetek</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Średnia wartość aktywów oprocentowanych w roku obrotowym</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Koszty działania</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Przychody</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
-          <input type="text" class="col-lg-6 form-control" id="exampleFormControlInput1" placeholder="">
-        </div> -->
-
-
       <div id="zaklad-form" hidden="">
-        <form method="POST">
+        <form method="POST" action="{% url 'zaklad-form' %}">
           {% csrf_token %}
-          <table>{{ zaklad_form }}</table>
-        <!--<div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Wynik techniczny</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-wynik-techniczy" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Składki</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-skladki" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Zysk (strata) netto</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-zysk" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Składki przypisane brutto</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-skladki-brutto" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Aktywa razem</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-aktywa-razem" placeholder="">
-        </div>
-        <div class="form-row">
-          <label class="col-lg-6" for="exampleFormControlInput1">Kapitał (fundusz) własny</label>
-          <input type="text" class="col-lg-6 form-control" id="zaklad-kapital" placeholder="">
-        </div>
-        <div class="mt-4 form-group text-center">
-          <input id="zaklad-calculation" class="btn btn-primary" value="Results">
-        </div>
-        <div id="zaklad-result" hidden="">
-          <p id="rentownosc-techniczna"></p>
-          <p id="rentownosc-sprzedazy"></p>
-          <p id="rentownosc-aktywow"></p>
-          <p id="rentownosc-kapitalu"></p>
-        </div> -->
-        <button type="submit">Submit</button>
-      </form>
+          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          {% crispy zaklad_form %}
+          <br>
+        </form>
       </div>
-    <!--</form> -->
+
     <script src="{% static 'records/app.js'%}"></script>
   </div>
 {% endblock content%}

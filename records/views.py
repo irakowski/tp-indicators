@@ -2,50 +2,45 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
 # Create your views here.
-from .forms import BankForm, ZakladForm, InnaCalculationForm, InnaPorownawczaForm
+from .forms import BankForm, ZakladForm, OtherEntityCalculationForm, OtherEntityComparisonForm
 
 
 class TpForm(generic.TemplateView):
     template_name = 'records/form.html'
     extra_context = {'bank_form': BankForm, 
                     'zaklad_form': ZakladForm, 
-                    'calculation_form': InnaCalculationForm,
-                    'comparison_form': InnaPorownawczaForm}
+                    'calculation_form': OtherEntityCalculationForm,
+                    'comparison_form': OtherEntityComparisonForm}
 
 
 class BankFormView(generic.FormView):
     form_class = BankForm
     template_name = 'records/bank-form.html'
 
-    def post(self, request, *args, **kwargs):
-        """
-        Handle POST requests: instantiate a form instance with the passed
-        POST variables and then check if it's valid.
-        """
-        form = self.get_form()
-        if form.is_valid():
-            print(form.data)
-            return self.form_valid(form)
-        else:
-            print(form.errors)
-            return self.form_invalid(form)
-    
+
     def form_valid(self, form):
         context = {}
         wynik = form.cleaned_data.get("wynik_z_odsetek")
         context['wynik'] = wynik
+
         srednia = form.cleaned_data.get("srednia_wartosc_aktywow_oprocentowanych")
         context['srednia'] = srednia
+
         koszty = form.cleaned_data.get('koszty_dzialania')
         context['koszty'] = koszty
+
         przychody = form.cleaned_data.get("przychody")
         context['przychody'] = przychody
+
         zysk_strata_netto = form.cleaned_data.get("zysk_strata_netto")
         context['zysk_strata_netto'] = zysk_strata_netto
+
         aktywa_razem = form.cleaned_data.get("aktywa_razem")
         context['aktywa_razem'] = aktywa_razem
+
         kapital_fundusz_wlasny = form.cleaned_data.get("kapital_fundusz_wlasny")
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
+        #Calculation for display
         marza_odsetkowa_netto = (float(wynik)/float(srednia))*100
         context['marza_odsetkowa_netto'] = round(marza_odsetkowa_netto, 3)
         koszty_dochody = (float(koszty)/float(przychody))*100
@@ -77,7 +72,7 @@ class ZakladFormView(generic.FormView):
         kapital_fundusz_wlasny = form.cleaned_data.get('kapital_fundusz_wlasny')
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
 
-        rentownosc_dzialalnosci_technicznej = (float(wynik_teczniczny)/ float(skladki)) *100
+        rentownosc_dzialalnosci_technicznej = (float(wynik_techniczny)/ float(skladki)) *100
         context['rentownosc_dzialalnosci_technicznej'] = round(rentownosc_dzialalnosci_technicznej, 3)
         rentownosc_sprzedazy = (float(zysk_strata_netto) / float(skladki_przypisane_brutto)) *100
         context['rentownosc_sprzedazy'] = round(rentownosc_sprzedazy, 3)
@@ -85,12 +80,12 @@ class ZakladFormView(generic.FormView):
         context['rentownosc_aktywow'] = round(rentownosc_aktywow, 3)
         rentownosc_kapitalu_wlasnego = (float(zysk_strata_netto) / float(kapital_fundusz_wlasny)) *100
         context['rentownosc_kapitalu_wlasnego'] = round(rentownosc_kapitalu_wlasnego, 3)
-        return render(request, self.template_name, context)
+        return render(self.request, self.template_name, context)
 
 
 class ComparisonFormView(generic.FormView):
     template_name = 'records/comparison-form.html'
-    form_class = InnaPorownawczaForm
+    form_class = OtherEntityComparisonForm
 
     def form_valid(self, form):
         context = dict()
@@ -138,7 +133,7 @@ class ComparisonFormView(generic.FormView):
 
 class CalculationFormView(generic.FormView):
     template_name = 'records/calculation-form.html'
-    form_class = InnaCalculationForm
+    form_class = OtherEntityCalculationForm
 
     def form_valid(self, form):
         context = dict()
