@@ -16,6 +16,19 @@ class TpForm(generic.TemplateView):
 class BankFormView(generic.FormView):
     form_class = BankForm
     template_name = 'records/bank-form.html'
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        form = self.get_form()
+        if form.is_valid():
+            print(form.data)
+            return self.form_valid(form)
+        else:
+            print(form.errors)
+            return self.form_invalid(form)
     
     def form_valid(self, form):
         context = {}
@@ -41,6 +54,7 @@ class BankFormView(generic.FormView):
         context['rentownosc_aktywow'] = round(rentownosc_aktywow, 3)
         rentownosc_kapitalu_wlasnego  = (float(zysk_strata_netto)/float(kapital_fundusz_wlasny)) *100
         context['rentownosc_kapitalu_wlasnego'] = round(rentownosc_kapitalu_wlasnego, 3)
+        
         return render(self.request, self.template_name, context)
 
 

@@ -1,7 +1,16 @@
 {% extends 'records/base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
 <div class="container">
+    <h4 class="text-center mt-5 mb-5">Formularz bankowy</h4>
+    {% if form.errors %}
+    <form method="POST" action="{% url 'bank-form' %}">
+        {% csrf_token %}
+        {% crispy form %}
+        <p class="text-muted small">Wartosci nie moga byc mniejsze od zera</p>
+    </form>
+    {% else %}
     <div>
         <h2>Dane wysciowe</h2>
         <p>Wynik z tytułu odsetek: {{wynik}}</p>
@@ -19,5 +28,7 @@
         <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
         <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
     </div>
+    {% endif %}
 </div>
+
 {% endblock%}
