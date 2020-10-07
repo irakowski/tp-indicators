@@ -1,9 +1,9 @@
 {% extends 'records/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block content%}
-<div class="container mt-5">
-    <h2 class="text-center"> Kalkulator wskaznikow Finansowych</h2>
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center"> Kalkulator wskaźników finansowych</h2>
       <div class="form-group mt-3 text-center">
         <label for="type">Wybierz rodzaj podmiotu dla którego przygotowujesz deklarację TPR-C</label>
       </div>
@@ -20,19 +20,19 @@
       </div>
 
       <div class="container mt-3 mb-3 text-center" id="rzis" hidden>
-            <p>Wybierz właściwy wariant RZiS analizowanego podmiotu</p>
-            <div class="form-check-inline">
-                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="comparison-pick" value="Wariant porównawczy">
-            </div>
-            <div class="form-check-inline">
-                <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="calculation-pick" value="Wariant kalkulacyjny">
-            </div>
+        <p>Wybierz właściwy wariant RZiS analizowanego podmiotu</p>
+        <div class="form-check-inline">
+          <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="comparison-pick" value="Wariant porównawczy">
+        </div>
+        <div class="form-check-inline">
+          <input class="btn btn-outline-primary btn-lg" type="button" name="rzis-type" id="calculation-pick" value="Wariant kalkulacyjny">
+        </div>
       </div>
 
       <div id="comparison-form" hidden="">
         <form method="POST" action="{% url 'comparison-form' %}">
           {% csrf_token %}
-          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          <p class="text-muted small text-center">Wartości nie mogą być mniejsze od zera</p>
           {% crispy comparison_form %}
           <br>
         </form>
@@ -40,7 +40,7 @@
       <div id="calculation-form" hidden="">
         <form method="POST" action="{% url 'calculation-form' %}">
           {% csrf_token %}
-          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          <p class="text-muted small text-center">Wartości nie mogą być mniejsze od zera</p>
           {% crispy calculation_form %}
           <br>
         </form>
@@ -48,7 +48,7 @@
       <div id="bank-form" hidden="">
         <form method="POST" action="{% url 'bank-form' %}">
           {% csrf_token %}
-          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          <p class="text-muted small text-center">Wartości nie mogą być mniejsze od zera</p>
           {% crispy bank_form %}
           <br>
         </form>
@@ -56,7 +56,7 @@
       <div id="zaklad-form" hidden="">
         <form method="POST" action="{% url 'zaklad-form' %}">
           {% csrf_token %}
-          <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+          <p class="text-muted small text-center">Wartości nie mogą być mniejsze od zera</p>
           {% crispy zaklad_form %}
           <br>
         </form>

@@ -1,36 +1,36 @@
 {% extends 'records/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block content%}
+{% block content %}
 <div class="container">
-    <h4 class="text-center mt-5 mb-5">Formularz Zakladu ubezpieczen / reasekuracji</h4>
+    <h4 class="text-center mt-5 mb-5">Zakład ubezpieczeń / reasekuracji</h4>
     {% if form.errors %}
     <form method="POST" action="{% url 'zaklad-form' %}">
         {% csrf_token %}
-        <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+        <p class="text-muted small text-center">Wartości nie mogą być mniejsze od zera</p>
         {% crispy form %}
         <br>
     </form>
     {% else %}
     <div class="row shadow">
-        <div class="col-md-2"><h2>Dane wyjsciowe</h2></div>
+        <div class="col-md-2"><h2>Dane wejściowe</h2></div>
         <div class="col-md-8">
-            <p>Wynik techniczny: {{wynik_techniczny}}</p>
-            <p>Skladki {{skladki}}</p>
-            <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
-            <p>Skladki przypisane brutto:{{skladki_przypisane_brutto}} </p>
-            <p>Aktywa razem: {{aktywa_razem}}</p>
-            <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p>
+            <p>Wynik techniczny: {{ wynik_techniczny }}</p>
+            <p>Składki: {{ skladki }}</p>
+            <p>Zysk (strata) netto: {{ zysk_strata_netto }}</p>
+            <p>Składki przypisane brutto: {{ skladki_przypisane_brutto }}</p>
+            <p>Aktywa razem: {{ aktywa_razem }}</p>
+            <p>Kapitał (fundusz) własny: {{ kapital_fundusz_wlasny }}</p>
         </div>
     </div> 
     <hr>
     <div class="row shadow">
         <div class="col-md-2"><h2>Wyniki</h2></div>
         <div class="col-md-8">
-            <p>Rentownosc dzilalnosci technicznej {{rentownosc_dzialalnosci_technicznej}} %</p>
-            <p>Rentownosc sprzedazy: {{rentownosc_sprzedazy}} %</p>
-            <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
-            <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+            <p>Rentowność działalności technicznej: {{ rentownosc_dzialalnosci_technicznej }} %</p>
+            <p>Rentowność sprzedaży: {{ rentownosc_sprzedazy }} %</p>
+            <p>Rentowność aktywów: {{ rentownosc_aktywow }} %</p>
+            <p>Rentowność kapitału własnego: {{ rentownosc_kapitalu_wlasnego }} %</p>
         </div>
     </div>
     {% endif %}

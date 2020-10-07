@@ -1,41 +1,42 @@
 {% extends 'records/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block content%}
+{% block content %}
 <div class="container">
-    <h4 class="text-center mt-5 mb-5">Formularz Inna Instutucja / Wariant Porownawczy</h4>
+    <h4 class="text-center mt-5 mb-5">Inna Instytucja / Wariant porównawczy</h4>
     {% if form.errors %}
     <form method="POST" action="{% url 'comparison-form' %}">
         {% csrf_token %}
-        <p class="text-muted small text-center">Wartosci nie moga byc mniejsze od zera</p>
+        <p class="text-muted small text-center">Wartości nie mogą być mniejsze lub równe zero</p>
         {% crispy form %}
+        <br>
     </form>
     {% else %}
     <div class="row shadow">
-        <div class="col-md-2"><h2>Dane wysciowe</h2></div>
+        <div class="col-md-2"><h2>Dane wejściowe</h2></div>
         <div class="col-md-6">
-            <p>Zysk (strata) z działalności operacyjnej: {{zysk_strata_z_dzialalnosci_operacyjnej}}</p>
-            <p>Przychody netto ze sprzedaży i zrównane z nimi: {{przychody_netto}}</p>
-            <p>Zmiana stanu produktów: {{zmiana_stanu_produktow}}</p>
-            <p>Koszt wytworzenia świadczeń na potrzeby własne: {{koszty_swiadczen}} </p>
-            <p>Pozostałe przychody operacyjne: {{pozostale_przychody_operacyjne}}</p>
+            <p>Zysk (strata) z działalności operacyjnej: {{ zysk_strata_z_dzialalnosci_operacyjnej }}</p>
+            <p>Przychody netto ze sprzedaży i zrównane z nimi: {{ przychody_netto }}</p>
+            <p>Zmiana stanu produktów: {{ zmiana_stanu_produktow }}</p>
+            <p>Koszt wytworzenia świadczeń na potrzeby własne: {{ koszty_swiadczen }}</p>
+            <p>Pozostałe przychody operacyjne: {{ pozostale_przychody_operacyjne }}</p>
         </div>
         <div class="col-md-4">
-            <p>Zysk (strata) brutto: {{zysk_strata_brutto}}</p>
-            <p>Przychody finansowe: {{przychody_finansowe}}</p> 
-            <p>Zysk (strata) netto: {{zysk_strata_netto}}</p>
-            <p>Aktywa razem: {{aktywa_razem}}</p>
-            <p>Kapitał (fundusz) własny: {{kapital_fundusz_wlasny}}</p>
+            <p>Zysk (strata) brutto: {{ zysk_strata_brutto }}</p>
+            <p>Przychody finansowe: {{ przychody_finansowe }}</p> 
+            <p>Zysk (strata) netto: {{ zysk_strata_netto }}</p>
+            <p>Aktywa razem: {{ aktywa_razem }}</p>
+            <p>Kapitał (fundusz) własny: {{ kapital_fundusz_wlasny }}</p>
         </div>        
     </div> 
     <hr>
     <div class="row shadow">
         <div class="col-md-2"><h2>Wyniki</h2></div>
         <div class="col-md-6">
-            <p>Marza operacyjna: {{marza_operacyjna}} %</p>
-            <p>Marza zysku brutto: {{marza_zysku_brutto}} %</p>
-            <p>Rentownosc aktywow: {{rentownosc_aktywow}} %</p>
-            <p>Rentownosc kapitalu wlasnego: {{rentownosc_kapitalu_wlasnego}} %</p>
+            <p>Marża operacyjna: {{ marza_operacyjna }} %</p>
+            <p>Marża zysku brutto: {{ marza_zysku_brutto }} %</p>
+            <p>Rentowność aktywów: {{ rentownosc_aktywow }} %</p>
+            <p>Rentowność kapitału własnego: {{ rentownosc_kapitalu_wlasnego }} %</p>
         </div>
     </div>
     {% endif %}

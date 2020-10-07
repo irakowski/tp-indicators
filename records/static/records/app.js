@@ -44,32 +44,11 @@ $(function(){
             $('#comparison-form').attr('hidden', "");
         }
     });
-    $('input[type="text"').on('change, keyup', function() {
+   /* $('input[type="text"]').on('change, keyup', function() {
         var currentInput = $(this).val();
-        var fixedInput = currentInput.replace(/[A-Za-z!@#$%;^+&"-*/<\]\{}|`_\\~[:>=?+'()]/g, '');
+        var fixedInput = currentInput.replace(/[A-Za-z!@#$%;^+&"-*</\]\{}|`_\\~[:>=?+'()]/g, '');
         fixedInput = fixedInput.replace(/[,]/g, '.');
         $(this).val(fixedInput);
-    })
-   /* $("#zaklad-calculation").click(function(){
-        $('#zaklad-result').removeAttr('hidden');
-        var wynikTechnicny = Number($("#zaklad-wynik-techniczy").val());
-        var skladki = Number($("#zaklad-skladki").val());
-        var rentownosc = (wynikTechnicny / skladki) * 100
-        $("#rentownosc-techniczna").html( "Rentownosc działalności technicznej wynosi: "+ rentownosc.toFixed(3) +"%" );
-
-        var zyskStrata = Number($("#zaklad-zysk").val());
-        var skladkiBrutto = Number($("#zaklad-skladki-brutto").val())
-        var sprzedaza = (zyskStrata / skladkiBrutto) * 100;
-        $("#rentownosc-sprzedazy").html( "Rentownosc sprzedazy wynosi: "+ sprzedaza.toFixed(3) +"%" );
-
-        var aktywaRazem = Number($("#zaklad-aktywa-razem").val())
-        var aktywa = (zyskStrata / aktywaRazem) * 100;
-        $("#rentownosc-aktywow").html( "Rentownosc aktywow wynosi: "+ aktywa.toFixed(3) +"%" );
-
-        var kapitalValue = Number($("#zaklad-kapital").val())
-        var kapital = (zyskStrata / kapitalValue) * 100;
-        $("#rentownosc-kapitalu").html( "Rentownosc kapitału własnego wynosi : "+ kapital.toFixed(3) +"%" )
-    });
-    */
+    }) */
 });
 

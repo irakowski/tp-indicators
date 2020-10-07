@@ -5,27 +5,43 @@ from django import forms
 from django.utils.translation import gettext as _
 
 
-def zero_value_validator(value):
-    """Validating user input value not be equal 0 on divisible fields"""
-    if float(value) == 0.0:
-        raise ValidationError(_("Ta wartosc nie moze byc rowna zero"))
+def zero_and_negative_value_validator(value):
+    """Validating user input value not be equal 0 on divisible fields and and be greater than zero"""
+    try:
+        value = float(value)
+    except ValueError:
+        raise ValidationError(_('Niepoprawna wartosc'))
+    if float(value) <= 0.0:
+        raise ValidationError(_('Wartości nie mogą być mniejsze lub równe zero'))
 
 
 def negative_value_validator(value):
     """Validating user input to be greater than zero"""
+    try:
+        value = float(value)
+    except ValueError:
+        raise ValidationError(_('Niepoprawna wartosc'))
     if float(value) < 0.0:
-        raise ValidationError(_("Wartosci nie moga byc mniejsze od zero"))
+        raise ValidationError(_('Wartości nie mogą być mniejsze lub równe zero'))
 
 
 class BankForm(forms.Form):
     
-    wynik_z_odsetek = forms.CharField(max_length=100, widget=forms.TextInput, validators=[negative_value_validator])
-    srednia_wartosc_aktywow_oprocentowanych = forms.CharField(max_length=100, validators=[zero_value_validator, negative_value_validator])
-    koszty_dzialania = forms.CharField(validators=[negative_value_validator])
-    przychody = forms.CharField(validators=[zero_value_validator,negative_value_validator])
-    zysk_strata_netto = forms.CharField(validators=[negative_value_validator])
-    aktywa_razem = forms.CharField(validators=[zero_value_validator, negative_value_validator])
-    kapital_fundusz_wlasny = forms.CharField(validators=[zero_value_validator, negative_value_validator])
+    wynik_z_odsetek = forms.CharField(label=(_('Wynik z tytułu odsetek')), 
+                    validators=[negative_value_validator],max_length=100,)
+    srednia_wartosc_aktywow_oprocentowanych = forms.CharField(max_length=100,
+                    label=(_('Średnia wartość aktywów oprocentowanych w roku obrotowym')),
+                    validators=[zero_and_negative_value_validator])
+    koszty_dzialania = forms.CharField(label=(_('Koszty działania')), validators=[negative_value_validator],
+                    max_length=100)
+    przychody = forms.CharField(label=(_('Przychody')), validators=[zero_and_negative_value_validator], 
+                    max_length=100)
+    zysk_strata_netto = forms.CharField(label=(_('Zysk (strata) netto')), 
+                    validators=[negative_value_validator], max_length=100)
+    aktywa_razem = forms.CharField(label=(_('Aktywa razem')), validators=[zero_and_negative_value_validator],
+                    max_length=100)
+    kapital_fundusz_wlasny = forms.CharField(label=(_('Kapitał (fundusz) własny')), 
+                    validators=[zero_and_negative_value_validator], max_length=100)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -46,14 +62,21 @@ class BankForm(forms.Form):
             Submit('submit', 'Policz')
         )
 
+
 class ZakladForm(forms.Form):
 
-    wynik_techniczny = forms.CharField(validators=[negative_value_validator]) 
-    skladki = forms.CharField(validators=[negative_value_validator, zero_value_validator])
-    zysk_strata_netto = forms.CharField(validators=[negative_value_validator])
-    skladki_przypisane_brutto = forms.CharField(validators=[negative_value_validator, zero_value_validator])
-    aktywa_razem = forms.CharField(validators=[negative_value_validator, zero_value_validator])
-    kapital_fundusz_wlasny = forms.CharField(validators=[negative_value_validator,zero_value_validator])
+    wynik_techniczny = forms.CharField(label=(_('Wynik techniczny')), validators=[negative_value_validator],
+                                    max_length=100) 
+    skladki = forms.CharField(label=(_('Składki')),validators=[zero_and_negative_value_validator],
+                            max_length=100)
+    zysk_strata_netto = forms.CharField(label=(_('Zysk (strata) netto')), max_length=100,
+                            validators=[negative_value_validator])
+    skladki_przypisane_brutto = forms.CharField(label=(_('Składki przypisane brutto')), 
+                            validators=[zero_and_negative_value_validator], max_length=100)
+    aktywa_razem = forms.CharField(label=(_('Aktywa razem')), validators=[zero_and_negative_value_validator],
+                            max_length=100)
+    kapital_fundusz_wlasny = forms.CharField(label=(_('Kapitał (fundusz) własny')), max_length=100,
+                            validators=[zero_and_negative_value_validator])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -72,22 +95,30 @@ class ZakladForm(forms.Form):
             ),
             Submit('submit', 'Policz')
         )
+
     
 class OtherEntityComparisonForm(forms.Form):
-    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(validators=[negative_value_validator])
+    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(label=(_('Zysk (strata) z działalności operacyjnej')), 
+                                        validators=[negative_value_validator], max_length=100)
     
-    przychody_netto = forms.CharField(label='Przychody netto ze sprzedaży i zrównane z nimi', 
-                                      validators=[negative_value_validator])
+    przychody_netto = forms.CharField(label=(_('Przychody netto ze sprzedaży i zrównane z nimi')), 
+                                      validators=[negative_value_validator], max_length=100)
    
-    zmiana_stanu_produktow = forms.CharField(validators=[negative_value_validator])
-    koszty_swiadczen = forms.CharField(label='Koszty wytworzenia świadczeń na potrzeby własne', 
-                                       validators=[negative_value_validator])
-    pozostale_przychody_operacyjne = forms.CharField(validators=[negative_value_validator])
-    zysk_strata_brutto = forms.CharField(validators=[negative_value_validator])
-    przychody_finansowe = forms.CharField(validators=[negative_value_validator])
-    zysk_strata_netto = forms.CharField(validators=[negative_value_validator])
-    aktywa_razem = forms.CharField(validators=[negative_value_validator, zero_value_validator])
-    kapital_fundusz_wlasny = forms.CharField(validators=[negative_value_validator, zero_value_validator])
+    zmiana_stanu_produktow = forms.CharField(label=(_('Zmiana stanu produktów')),
+                                    validators=[negative_value_validator], max_length=100)
+    koszty_swiadczen = forms.CharField(label=(_('Koszty wytworzenia świadczeń na potrzeby własne')), 
+                                    validators=[negative_value_validator], max_length=100)
+    pozostale_przychody_operacyjne = forms.CharField(label=(_('Pozostałe przychody operacyjne')),
+                                    validators=[negative_value_validator])
+    zysk_strata_brutto = forms.CharField(label=(_('Zysk (strata) brutto')),
+                                    validators=[negative_value_validator])
+    przychody_finansowe = forms.CharField(label=(_('Przychody finansowe')), 
+                                    validators=[negative_value_validator])
+    zysk_strata_netto = forms.CharField(label=(_('Zysk (strata) netto')), 
+                                    validators=[negative_value_validator])
+    aktywa_razem = forms.CharField(label=(_('Aktywa razem')), validators=[zero_and_negative_value_validator])
+    kapital_fundusz_wlasny = forms.CharField(label=(_('Kapitał (fundusz) własny')), 
+                                    validators=[zero_and_negative_value_validator])
 
     def clean(self):
         przychody = self.cleaned_data.get('przychody_netto')
@@ -98,9 +129,9 @@ class OtherEntityComparisonForm(forms.Form):
         result = float(przychody) - float(zmiana) - float(koszty) + float(pozostale)
         result2 = result + float(przychody_finansowe)
         if result == 0.0:
-            raise ValidationError(_('Prosze sprawdzic dane wyjsciowe. W wyniku kalkulacji dzielnik stanowi 0'))
+            raise ValidationError(_('Proszę sprawdzić dane wejściowe. Wprowadzone dane nie pozwalają na prawidłowe obliczenie wskaźników'))
         if result2 == 0.0:
-            raise ValidationError(_('Prosze sprawdzic dane wyjsciowe. W wyniku kalkulacji dzielnik stanowi 0'))
+            raise ValidationError(_('Proszę sprawdzić dane wejściowe. Wprowadzone dane nie pozwalają na prawidłowe obliczenie wskaźników'))
         return self.cleaned_data
 
     def __init__(self, *args, **kwargs):
@@ -128,15 +159,22 @@ class OtherEntityComparisonForm(forms.Form):
 
 class OtherEntityCalculationForm(forms.Form):
     
-    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(validators=[negative_value_validator])
-    przychody_netto = forms.CharField(label='Przychody netto ze sprzedaży produktów, towarów i materiałów',
-                                      validators=[negative_value_validator])
-    pozostale_przychody_operacyjne = forms.CharField(validators=[negative_value_validator])
-    zysk_strata_brutto = forms.CharField(validators=[negative_value_validator])
-    przychody_finansowe = forms.CharField(validators=[negative_value_validator])
-    zysk_strata_netto = forms.CharField(validators=[negative_value_validator])
-    aktywa_razem = forms.CharField(validators=[zero_value_validator, negative_value_validator])
-    kapital_fundusz_wlasny = forms.CharField(validators=[zero_value_validator, negative_value_validator])
+    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(label=(_('Zysk (strata) z działalności operacyjnej')),
+                                        validators=[negative_value_validator], max_length=100)
+    przychody_netto = forms.CharField(label=(_('Przychody netto ze sprzedaży produktów, towarów i materiałów')),
+                                    validators=[negative_value_validator], max_length=100)
+    pozostale_przychody_operacyjne = forms.CharField(label=(_('Pozostałe przychody operacyjne')), 
+                                    validators=[negative_value_validator], max_length=100)
+    zysk_strata_brutto = forms.CharField(label=(_('Zysk (strata) brutto')), 
+                                    validators=[negative_value_validator], max_length=100)
+    przychody_finansowe = forms.CharField(label=(_('Przychody finansowe')), 
+                                    validators=[negative_value_validator], max_length=100)
+    zysk_strata_netto = forms.CharField(label=(_('Zysk (strata) netto')), 
+                                    validators=[negative_value_validator], max_length=100)
+    aktywa_razem = forms.CharField(label=(_('Aktywa razem')), max_length=100,
+                                    validators=[zero_and_negative_value_validator])
+    kapital_fundusz_wlasny = forms.CharField(label=(_('Kapitał (fundusz) własny')), max_length=100, 
+                                    validators=[zero_and_negative_value_validator])
 
     def clean(self):
         przychody = self.cleaned_data.get('przychody_netto')
@@ -147,9 +185,9 @@ class OtherEntityCalculationForm(forms.Form):
         result = float(przychody) + float(pozostale)
         result2 = result + float(przychody_finansowe)
         if result == 0.0:
-            raise ValidationError(_('Prosze sprawdzic dane wyjsciowe. W wyniku kalkulacji dzielnik stanowi 0'))
+            raise ValidationError(_('Proszę sprawdzić dane wejściowe. Wprowadzone dane nie pozwalają na prawidłowe obliczenie wskaźników'))
         if result2 == 0.0:
-            raise ValidationError(_('Prosze sprawdzic dane wyjsciowe. W wyniku kalkulacji dzielnik stanowi 0'))
+            raise ValidationError(_('Proszę sprawdzić dane wejściowe. Wprowadzone dane nie pozwalają na prawidłowe obliczenie wskaźników'))
         return self.cleaned_data
 
     def __init__(self, *args, **kwargs):

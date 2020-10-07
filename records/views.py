@@ -14,9 +14,12 @@ class TpForm(generic.TemplateView):
 
 
 class BankFormView(generic.FormView):
+    """
+    View Handling Bank Form Submittion and calculation
+    """
+
     form_class = BankForm
     template_name = 'records/bank-form.html'
-
 
     def form_valid(self, form):
         context = {}
@@ -40,6 +43,7 @@ class BankFormView(generic.FormView):
 
         kapital_fundusz_wlasny = form.cleaned_data.get("kapital_fundusz_wlasny")
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
+        
         #Calculation for display
         marza_odsetkowa_netto = (float(wynik)/float(srednia))*100
         context['marza_odsetkowa_netto'] = round(marza_odsetkowa_netto, 3)
@@ -54,6 +58,9 @@ class BankFormView(generic.FormView):
 
 
 class ZakladFormView(generic.FormView):
+    """
+    View Handling calculation for zaklad-form submits
+    """
     template_name = 'records/zaklad-form.html'
     form_class = ZakladForm
 
@@ -72,6 +79,7 @@ class ZakladFormView(generic.FormView):
         kapital_fundusz_wlasny = form.cleaned_data.get('kapital_fundusz_wlasny')
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
 
+        ##CALCULATIONS
         rentownosc_dzialalnosci_technicznej = (float(wynik_techniczny)/ float(skladki)) *100
         context['rentownosc_dzialalnosci_technicznej'] = round(rentownosc_dzialalnosci_technicznej, 3)
         rentownosc_sprzedazy = (float(zysk_strata_netto) / float(skladki_przypisane_brutto)) *100
@@ -84,6 +92,9 @@ class ZakladFormView(generic.FormView):
 
 
 class ComparisonFormView(generic.FormView):
+    """
+    View Handling calculation for OtherEntityComparisonForm submits
+    """
     template_name = 'records/comparison-form.html'
     form_class = OtherEntityComparisonForm
 
@@ -116,7 +127,8 @@ class ComparisonFormView(generic.FormView):
         context['aktywa_razem'] = aktywa_razem
         kapital_fundusz_wlasny = form.cleaned_data.get('kapital_fundusz_wlasny')
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
-
+        
+        ##CALCULATIONS
         marza_operacyjna = (float(zysk_strata_z_dzialalnosci_operacyjnej)/(float(przychody_netto)-float(zmiana_stanu_produktow) - float(koszty_swiadczen) + float(pozostale_przychody_operacyjne)))*100
         context['marza_operacyjna'] = round(marza_operacyjna, 3)
         
@@ -132,6 +144,9 @@ class ComparisonFormView(generic.FormView):
 
 
 class CalculationFormView(generic.FormView):
+    """
+    View Handling calculation for OtherEntityCalculationForm submits
+    """
     template_name = 'records/calculation-form.html'
     form_class = OtherEntityCalculationForm
 
@@ -160,6 +175,7 @@ class CalculationFormView(generic.FormView):
         kapital_fundusz_wlasny = form.cleaned_data.get('kapital_fundusz_wlasny')
         context['kapital_fundusz_wlasny'] = kapital_fundusz_wlasny
 
+        ##CALCULATIONS
         marza_operacyjna = (float(zysk_strata_z_dzialalnosci_operacyjnej)/(float(przychody_netto) + float(pozostale_przychody_operacyjne)))*100
         context['marza_operacyjna'] = round(marza_operacyjna, 3)
         
