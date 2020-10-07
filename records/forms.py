@@ -10,9 +10,9 @@ def zero_and_negative_value_validator(value):
     try:
         value = float(value)
     except ValueError:
-        raise ValidationError(_('Niepoprawna wartosc'))
+        raise ValidationError(_('Niepoprawna wartość'))
     if float(value) <= 0.0:
-        raise ValidationError(_('Wartości nie mogą być mniejsze lub równe zero'))
+        raise ValidationError(_('Ta wartość nie może być mniejsza lub równa zero'))
 
 
 def negative_value_validator(value):
