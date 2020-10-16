@@ -52,10 +52,10 @@ class BankForm(forms.Form):
         self.helper.layout = Layout(
             Row(
                 Column('wynik_z_odsetek', css_class='form-group col-md-8 mb-0'),
-                Column('srednia_wartosc_aktywow_oprocentowanych', css_class='form-group col-md-8 mb-0'),
-                Column('koszty_dzialania', css_class='form-group col-md-8 mb-0'),
                 Column('przychody', css_class='form-group col-md-8 mb-0'),
+                Column('koszty_dzialania', css_class='form-group col-md-8 mb-0'),
                 Column('zysk_strata_netto', css_class='form-group col-md-8 mb-0'),
+                Column('srednia_wartosc_aktywow_oprocentowanych', css_class='form-group col-md-8 mb-0'),
                 Column('aktywa_razem', css_class='form-group col-md-8 mb-0'),
                 Column('kapital_fundusz_wlasny', css_class='form-group col-md-8 mb-0'),
             ),
@@ -86,10 +86,10 @@ class ZakladForm(forms.Form):
         self.helper.field_class = 'col-lg-6'
         self.helper.layout = Layout(
             Row(
-                Column('wynik_techniczny', css_class='form-group col-md-8 mb-0'),
                 Column('skladki', css_class='form-group col-md-8 mb-0'),
-                Column('zysk_strata_netto', css_class='form-group col-md-8 mb-0'),
                 Column('skladki_przypisane_brutto', css_class='form-group col-md-8 mb-0'),
+                Column('wynik_techniczny', css_class='form-group col-md-8 mb-0'),
+                Column('zysk_strata_netto', css_class='form-group col-md-8 mb-0'),
                 Column('aktywa_razem', css_class='form-group col-md-8 mb-0'),
                 Column('kapital_fundusz_wlasny', css_class='form-group col-md-8 mb-0'),
             ),
@@ -98,8 +98,6 @@ class ZakladForm(forms.Form):
 
     
 class OtherEntityComparisonForm(forms.Form):
-    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(label=(_('Zysk (strata) z działalności operacyjnej')), 
-                                        validators=[negative_value_validator], max_length=100)
     
     przychody_netto = forms.CharField(label=(_('Przychody netto ze sprzedaży i zrównane z nimi')), 
                                       validators=[negative_value_validator], max_length=100)
@@ -108,12 +106,14 @@ class OtherEntityComparisonForm(forms.Form):
                                     validators=[negative_value_validator], max_length=100)
     koszty_swiadczen = forms.CharField(label=(_('Koszty wytworzenia świadczeń na potrzeby własne')), 
                                     validators=[negative_value_validator], max_length=100)
-    pozostale_przychody_operacyjne = forms.CharField(label=(_('Pozostałe przychody operacyjne')),
-                                    validators=[negative_value_validator])
     zysk_strata_brutto = forms.CharField(label=(_('Zysk (strata) brutto')),
+                                    validators=[negative_value_validator])
+    pozostale_przychody_operacyjne = forms.CharField(label=(_('Pozostałe przychody operacyjne')),
                                     validators=[negative_value_validator])
     przychody_finansowe = forms.CharField(label=(_('Przychody finansowe')), 
                                     validators=[negative_value_validator])
+    zysk_strata_z_dzialalnosci_operacyjnej = forms.CharField(label=(_('Zysk (strata) z działalności operacyjnej')), 
+                                        validators=[negative_value_validator], max_length=100)
     zysk_strata_netto = forms.CharField(label=(_('Zysk (strata) netto')), 
                                     validators=[negative_value_validator])
     aktywa_razem = forms.CharField(label=(_('Aktywa razem')), validators=[zero_and_negative_value_validator])
@@ -142,13 +142,13 @@ class OtherEntityComparisonForm(forms.Form):
         self.helper.field_class = 'col-lg-6'
         self.helper.layout = Layout(
             Row(
-                Column('zysk_strata_z_dzialalnosci_operacyjnej', css_class='form-group col-md-8 mb-0'),
                 Column('przychody_netto', css_class='form-group col-md-8 mb-0'),
                 Column('zmiana_stanu_produktow', css_class='form-group col-md-8 mb-0'),
                 Column('koszty_swiadczen', css_class='form-group col-md-8 mb-0'),
                 Column('pozostale_przychody_operacyjne', css_class='form-group col-md-8 mb-0'),
-                Column('zysk_strata_brutto', css_class='form-group col-md-8 mb-0'),
+                Column('zysk_strata_z_dzialalnosci_operacyjnej', css_class='form-group col-md-8 mb-0'),
                 Column('przychody_finansowe', css_class='form-group col-md-8 mb-0'),
+                Column('zysk_strata_brutto', css_class='form-group col-md-8 mb-0'),
                 Column('zysk_strata_netto', css_class='form-group col-md-8 mb-0'),
                 Column('aktywa_razem', css_class='form-group col-md-8 mb-0'),
                 Column('kapital_fundusz_wlasny', css_class='form-group col-md-8 mb-0'),
@@ -198,11 +198,11 @@ class OtherEntityCalculationForm(forms.Form):
         self.helper.field_class = 'col-lg-6'
         self.helper.layout = Layout(
             Row(
-                Column('zysk_strata_z_dzialalnosci_operacyjnej', css_class='form-group col-md-8 mb-0'),
                 Column('przychody_netto', css_class='form-group col-md-8 mb-0'),
                 Column('pozostale_przychody_operacyjne', css_class='form-group col-md-8 mb-0'),
-                Column('zysk_strata_brutto', css_class='form-group col-md-8 mb-0'),
+                Column('zysk_strata_z_dzialalnosci_operacyjnej', css_class='form-group col-md-8 mb-0'),
                 Column('przychody_finansowe', css_class='form-group col-md-8 mb-0'),
+                Column('zysk_strata_brutto', css_class='form-group col-md-8 mb-0'),
                 Column('zysk_strata_netto', css_class='form-group col-md-8 mb-0'),
                 Column('aktywa_razem', css_class='form-group col-md-8 mb-0'),
                 Column('kapital_fundusz_wlasny', css_class='form-group col-md-8 mb-0'),

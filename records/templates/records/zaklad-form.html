@@ -1,5 +1,6 @@
 {% extends 'records/base.html' %}
 {% load crispy_forms_tags %}
+{% load tp_tags %}
 {% load static %}
 {% block content %}
 <div class="container">
@@ -15,24 +16,27 @@
     <div class="row shadow">
         <div class="col-md-2"><h2>Dane wejściowe</h2></div>
         <div class="col-md-8">
-            <p>Wynik techniczny: {{ wynik_techniczny }}</p>
-            <p>Składki: {{ skladki }}</p>
-            <p>Zysk (strata) netto: {{ zysk_strata_netto }}</p>
-            <p>Składki przypisane brutto: {{ skladki_przypisane_brutto }}</p>
-            <p>Aktywa razem: {{ aktywa_razem }}</p>
-            <p>Kapitał (fundusz) własny: {{ kapital_fundusz_wlasny }}</p>
+            <p>Wynik techniczny: {{ wynik_techniczny|thousands }}</p>
+            <p>Składki: {{ skladki|thousands }}</p>
+            <p>Zysk (strata) netto: {{ zysk_strata_netto|thousands }}</p>
+            <p>Składki przypisane brutto: {{ skladki_przypisane_brutto|thousands }}</p>
+            <p>Aktywa razem: {{ aktywa_razem|thousands }}</p>
+            <p>Kapitał (fundusz) własny: {{ kapital_fundusz_wlasny|thousands }}</p>
         </div>
     </div> 
     <hr>
     <div class="row shadow">
         <div class="col-md-2"><h2>Wyniki</h2></div>
         <div class="col-md-8">
-            <p>Rentowność działalności technicznej: {{ rentownosc_dzialalnosci_technicznej }} %</p>
-            <p>Rentowność sprzedaży: {{ rentownosc_sprzedazy }} %</p>
-            <p>Rentowność aktywów: {{ rentownosc_aktywow }} %</p>
-            <p>Rentowność kapitału własnego: {{ rentownosc_kapitalu_wlasnego }} %</p>
+            <p>Rentowność działalności technicznej: {{ rentownosc_dzialalnosci_technicznej|floatformat:2 }} %</p>
+            <p>Rentowność sprzedaży: {{ rentownosc_sprzedazy|floatformat:2 }} %</p>
+            <p>Rentowność aktywów: {{ rentownosc_aktywow|floatformat:2 }} %</p>
+            <p>Rentowność kapitału własnego: {{ rentownosc_kapitalu_wlasnego|floatformat:2}} %</p>
         </div>
     </div>
     {% endif %}
+    <div class="text-center">
+        <a class="btn btn-outline-primary" href="{% url 'form' %}" role="button">Wróć</a>
+    </div>
 </div>
 {% endblock%}

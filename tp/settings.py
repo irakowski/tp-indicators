@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import django_heroku
-
+#from . import local_settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com']
-
+#ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,7 +83,15 @@ DATABASES = {
             'NAME': 'my_name',
         }
     }
-
+#DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#            'NAME': local_settings.NAME,
+#            'USER': local_settings.USER, 
+#            'HOST': local_settings.HOST,
+#            'PASSWORD': local_settings.PASSWORD,
+#        }
+#    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
