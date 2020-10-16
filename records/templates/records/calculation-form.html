@@ -16,8 +16,8 @@
     <div class="row shadow">
         <div class="col-md-2"><h2>Dane wejściowe</h2></div>
         <div class="col-md-6">
-            <p>Zysk (strata) z działalności operacyjnej: {{ zysk_strata_z_dzialalnosci_operacyjne|thousands }}</p>
-            <p>Przychody netto ze sprzedaży produktów, towarów i materiałów: {{ przychody_netto|thousands}}</p>
+            <p>Zysk (strata) z działalności operacyjnej: {{ zysk_strata_z_dzialalnosci_operacyjnej|thousands }}</p>
+            <p>Przychody netto ze sprzedaży produktów, towarów i materiałów: {{ przychody_netto|thousands }}</p>
             <p>Pozostałe przychody operacyjne: {{ pozostale_przychody_operacyjne|thousands }}</p>
             <p>Zysk (strata) brutto: {{ zysk_strata_brutto|thousands }}</p>
         </div>
@@ -32,7 +32,7 @@
     <div class="row shadow">
         <div class="col-md-2"><h2>Wyniki</h2></div>
         <div class="col-md-6">
-            <p>Marża operacyjna: {{ marza_operacyjna|floatformat:2}} %</p>
+            <p>Marża operacyjna: {{ marza_operacyjna|floatformat:2 }} %</p>
             <p>Marża zysku brutto: {{ marza_zysku_brutto|floatformat:2 }} %</p>
             <p>Rentowność aktywów: {{ rentownosc_aktywow|floatformat:2 }} %</p>
             <p>Rentowność kapitału własnego: {{ rentownosc_kapitalu_wlasnego|floatformat:2 }} %</p>
